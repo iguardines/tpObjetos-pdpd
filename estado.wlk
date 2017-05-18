@@ -37,18 +37,34 @@ object estado {
 	method propiedadRegistradaAlPlan(unaPropiedad) {
 		return self.propiedadesIncautadas().contains(unaPropiedad)
 	}
+	
+	method propiedadesAEntregar() {
+		return propiedades.filter({ v => v.esHabitable() })
+	}
 
 	method asignarPropiedad(unaFamilia, unaPropiedad) {
-	//si la propiedad o la familia no estan registrados, o si la familia no puede acceder a la propiedad
-	//lo importante aca es que corta el flujo
 		if (! self.propiedadRegistradaAlPlan(unaPropiedad) || !
 		self.familiaRegistradaAlPlan(unaFamilia) || !
 		unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad)) {
 			error.throwWithMessage("No se puede asignar esa propiedad a la familia")
-		}
-		unaPropiedad.habitar(unaFamilia)
+		} unaPropiedad.habitar(unaFamilia)
 		self.finalizarPlan(unaFamilia, unaPropiedad)
 	}
+	
+//	method buscarAsignarCasaAFamiliasiEsPosible(unaFamilia) {
+//		if (self.propiedadesAEntregar().any({ p => unaFamilia.accesoHabilitadoAPropiedad(p) })) {
+//
+//			var propiedad = self.propiedadesAEntregar().find({ p =>
+//			unaFamilia.accesoHabilitadoAPropiedad(p) })
+//			self.asignarPropiedad(unaFamilia, propiedad)
+//			self.finalizarPlan(unaFamilia, propiedad)
+//		}
+//	}
+//
+//	method asignarViviendasTerminadasAFamilias() {
+//		self.familiasParticipantes().any({ familia =>
+//		self.buscarAsignarCasaAFamiliasiEsPosible(familia) })
+//	}
 
 	method cantPropiedades() {
 		return propiedades.size()

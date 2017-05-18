@@ -5,6 +5,7 @@ import Familia.*
 import Persona.*
 import estado.*
 import Vivienda.*
+import fixture.*
 // 1)
 
 test "verificar que una familia accede a una propiedad" {
@@ -13,17 +14,32 @@ test "verificar que una familia accede a una propiedad" {
 	var gonzales = new Familia()
 	estado.incautarPropiedad(casa1)
 	estado.incautarPropiedad(dep2Ambientes)
-	var pablo = new Persona("pablo", 30, 60, electricidad) var juana =
-	new Persona("juana", 28, 40, electricidad)
+	var pablo = new Persona("pablo", 30, 60, electricidad) 
+	var juana = new Persona("juana", 28, 40, electricidad)
 	estado.agregarFamiliaParticipante(gonzales)
 	gonzales.agregarAFamilia(pablo)
 	gonzales.agregarAFamilia(juana)
 	pablo.trabaja(5, casa1)
 	juana.trabaja(10, casa1)
-	//assert.equals(2,gonzales.cantMiembrosFamilia())
-	//assert.equals(100,gonzales.cantHorasTrabajadas())
-	//assert.that(gonzales.accesoHabilitadoAPropiedad(casa1))
+
 	assert.that(gonzales.accesoHabilitadoAPropiedad(dep2Ambientes))
 	estado.asignarPropiedad(gonzales, dep2Ambientes)
+	
 	assert.that(!dep2Ambientes.esInhabitada())
+	assert.that(!estado.familiasParticipantes().contains(gonzales))
+	assert.that(!estado.propiedadesIncautadas().contains(dep2Ambientes))
 }
+
+
+//test "asignar viviendas terminadas a todas las posibles familias" {
+//
+//	fixture.familia3IntegrantesunoMenor()
+//	fixture.dep3AmbientesAEstrenar()
+//
+//	estado.asignarViviendasTerminadasAFamilias()
+//	assert.that(!estado.familiasParticipantes().isEmpty())
+//
+//}
+
+
+

@@ -5,8 +5,10 @@ class Persona {
 	var horasTrabajadasTotal
 	var habilidad
 
-	constructor(_nombre, _edad, _horasTrabajadasTotal, _habilidad) {
-		nombre = _nombre edad = _edad horasTrabajadasTotal = _horasTrabajadasTotal
+	constructor(_nombre, _edad, _horasTrabajadasTotal, _habilidad) { // identado ARI 24/05
+		nombre = _nombre 
+		edad = _edad 
+		horasTrabajadasTotal = _horasTrabajadasTotal
 		habilidad = _habilidad
 	}
 

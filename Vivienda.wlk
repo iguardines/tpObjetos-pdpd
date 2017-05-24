@@ -10,7 +10,7 @@ class Vivienda{
 		return horasTrabajoRestante == 0 && self.estaVacia()
 	}
 	
-	method estaVacia(){
+	method estaVacia(){ 		// cambié el nombre por estaVacia() ARI 24/05
 			return habitantes.isEmpty()
 	}
 	

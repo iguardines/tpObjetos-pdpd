@@ -7,10 +7,10 @@ class Vivienda{
 
 	
 	method esHabitable(){
-		return horasTrabajoRestante == 0 && self.esInhabitada()
+		return horasTrabajoRestante == 0 && self.estaVacia()
 	}
 	
-	method esInhabitada(){
+	method estaVacia(){
 			return habitantes.isEmpty()
 	}
 	
@@ -27,7 +27,7 @@ class Vivienda{
 	}
 	
 	method habitar(familia){
-		if(!self.esInhabitada() || !self.esHabitable() ){
+		if(!self.estaVacia() || !self.esHabitable() ){
 			error.throwWithMessage("La casa no esta habitable")
 		}
 		habitantes = familia.miembrosFamilia()

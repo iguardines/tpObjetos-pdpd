@@ -43,9 +43,9 @@ object estado {
 	}
 
 	method asignarPropiedad(unaFamilia, unaPropiedad) {
-		if (! self.propiedadRegistradaAlPlan(unaPropiedad) || !
-		self.familiaRegistradaAlPlan(unaFamilia) || !
-		unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad)) {
+		if (! self.propiedadRegistradaAlPlan(unaPropiedad) || 
+		    ! self.familiaRegistradaAlPlan(unaFamilia) || 
+		    ! unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad)) {
 			error.throwWithMessage("No se puede asignar esa propiedad a la familia")
 		} unaPropiedad.habitar(unaFamilia)
 		self.finalizarPlan(unaFamilia, unaPropiedad)

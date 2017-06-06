@@ -1,4 +1,5 @@
 import Vivienda.*
+import UserException.*
 
 object estado {
 	var participantes = [ ]
@@ -46,7 +47,7 @@ object estado {
 		if ( propiedadNoPuedeAdjudicarse(unaPropiedad) || 
 		     familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad)
    		{
-		error.throwWithMessage("No se puede asignar esa propiedad a la familia")
+		throw new UserException("No se puede asignar esa propiedad a la familia")
 		} unaPropiedad.habitar(unaFamilia)
 		self.finalizarPlan(unaFamilia, unaPropiedad)
 	}

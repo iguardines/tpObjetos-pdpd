@@ -42,13 +42,13 @@ object estado {
 	method propiedadesAEntregar() {
 		return propiedades.filter({ v => v.esHabitable() })
 	}
-
-	method asignarPropiedad(unaFamilia, unaPropiedad) {		//ARI 05/06/2017
+method asignarPropiedad(unaFamilia, unaPropiedad) {		
 		if ( propiedadNoPuedeAdjudicarse(unaPropiedad) || 
-		     familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad)
+		     familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) ||
+		     !unaPropiedad.esHabitable())
    		{
 		throw new UserException("No se puede asignar esa propiedad a la familia")
-		} unaPropiedad.habitar(unaFamilia)
+		} unaFamilia.habitar(unaPropiedad)
 		self.finalizarPlan(unaFamilia, unaPropiedad)
 	}
 
@@ -57,7 +57,7 @@ object estado {
 		return ! self.propiedadRegistradaAlPlan(unaPropiedad)
 	}
 
-	method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad){ //ARI 05/06/2017
+	method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad){ 
 		return (! self.familiaRegistradaAlPlan(unaFamilia) || 
 		   	! unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad))
 	}

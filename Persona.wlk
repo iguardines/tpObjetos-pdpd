@@ -1,23 +1,36 @@
+import UserException.*
 
 class Persona {
 	var nombre
 	var edad
-	var horasTrabajadasTotal = 0		// comienza sin horas ARI 06/06
+	var horasTrabajadasTotal = 0		
 	var habilidad
 
-	constructor(_nombre, _edad, _horasTrabajadasTotal, _habilidad) { // identado ARI 24/05
+	constructor(_nombre, _edad, _horasTrabajadasTotal, _habilidad)
 		nombre = _nombre 
 		edad = _edad 
-		// horasTrabajadasTotal = _horasTrabajadasTotal	// comienza sin horas ARI 06/06
 		habilidad = _habilidad
 	}
 
-	// method trabaja(cantHoras, unaPropiedad) {	// 
-	//	unaPropiedad.disminuyeHorasRestantes(habilidad.porcentaje() * cantHoras +
-	//	cantHoras)
-	//	self.aumentaHorasTrabajadas(( habilidad.porcentaje() * cantHoras ) +
-	//	cantHoras)
-	//}
+	method trabaja(cantHoras, unaPropiedad) {
+		if (edad < 18 || edad > 65){
+			throw new UserException("La edad de esta persona no le permite trabajar")
+		}
+		unaPropiedad.tiempoTrabajadoEnEsta(self.horasSegunHabilidad(cantHoras))
+		self.aumentaHorasTrabajadas(self.horasSegunHabilidad(cantHoras))
+	}
+	
+	method horasSegunHabilidad(cantHoras){
+		return habilidad.calcularHoras(cantHoras)
+			}
+	
+	method habilidad(unaHabilidad){
+		habilidad = unaHabilidad
+	}
+	
+	method habilidad(){
+		return habilidad
+	}
 	
 	
 

@@ -16,7 +16,7 @@ class Persona {
 		if (edad < 18 || edad > 65){
 			throw new UserException("La edad de esta persona no le permite trabajar")
 		}
-		unaPropiedad.tiempoTrabajadoEnEsta(self.horasSegunHabilidad(cantHoras))
+		unaPropiedad.tiempoTrabajado(self.horasSegunHabilidad(cantHoras))
 		self.aumentaHorasTrabajadas(self.horasSegunHabilidad(cantHoras))
 	}
 	

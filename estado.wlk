@@ -43,8 +43,8 @@ object estado {
 		return propiedades.filter({ v => v.esHabitable() })
 	}
 method asignarPropiedad(unaFamilia, unaPropiedad) {		
-		if ( propiedadNoPuedeAdjudicarse(unaPropiedad) || 
-		     familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) ||
+		if ( self.propiedadNoPuedeAdjudicarse(unaPropiedad) || 
+		     self.familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) ||
 		     !unaPropiedad.esHabitable())
    		{
 		throw new UserException("No se puede asignar esa propiedad a la familia")

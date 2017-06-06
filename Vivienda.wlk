@@ -31,6 +31,16 @@ class Vivienda{
 		return horasTrabajoAcceso
 	}
 	
+	method puedeAcceder(unaFamilia){
+		return (self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
+		&& self.soportaFamilia(unaFamilia.cantMiembrosFamilia())
+	}
+			
+	method cumpleHorasNecesariasAcceso(unaFamilia){
+		return unaFamilia.cantHorasTrabajadas()>= self.horasTrabajoAcceso() 
+	
+	}
+	
 	method habitar(familia){
 		if(!self.estaVacia() || !self.esHabitable() ){
 			throw new UserException("La casa no esta habitable")

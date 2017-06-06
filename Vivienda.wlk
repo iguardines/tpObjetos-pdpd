@@ -1,3 +1,5 @@
+import UserException.*
+
 class Vivienda{
 	var horasTrabajoRestante
 	var estadoVivienda
@@ -31,7 +33,7 @@ class Vivienda{
 	
 	method habitar(familia){
 		if(!self.estaVacia() || !self.esHabitable() ){
-			error.throwWithMessage("La casa no esta habitable")
+			throw new UserException("La casa no esta habitable")
 		}
 		habitantes = familia.miembrosFamilia()
 		

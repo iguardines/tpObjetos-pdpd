@@ -3,39 +3,20 @@ import Familia.*
 import Persona.*
 
 class Habilidad {
+var porcentaje
 
-method calcularHoras(unaPersona){
+contructor(_porcentaje){
+  porcentaje = _porcentaje 
 }
 
+method calcularHoras(cantHoras){
+  return porcentaje * cantHoras
 }
 
-object electricidad {
-const porcentaje = 1.2
+object electricidad inherits Habilidad(1.2){}
 
-method porcentaje() {
-return porcentaje
-}
-}
+object decorador inherits Habilidad(2){}
 
-object decorador {
-const porcentaje = 2
+object desordenado inherits Habilidad(0.75){}
 
-method porcentaje() {
-return porcentaje
-}
-}
-
-object desordenado {
-const porcentaje = 0.75
-
-method porcentaje() {
-return porcentaje
-}
-}
-
-object sinHabilidad {
-const porcentaje = 1
-
-method porcentaje() {
-return porcentaje
-}
+object sinHabilidad inherits Habilidad(2){}

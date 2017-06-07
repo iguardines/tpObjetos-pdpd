@@ -1,4 +1,3 @@
-import PlanVivienda.*
 import Casa.*
 import Departamento.*
 import Familia.*
@@ -49,7 +48,7 @@ test " verificar que una casa de 3 ambientes no acepta una familia de 1 integran
 
 test "verificar que una casa con horas de trabajo restantes no es habitable" {
 	var casaHorasRestantes = new Casa(1, 40, 2)
-		assert.that(!casaHorasRestantes.esHabitable())
+		assert.notThat(casaHorasRestantes.esHabitable())
 }
 
 test "verificar que una casa con horas de trabajo restantes no esta habitada" {

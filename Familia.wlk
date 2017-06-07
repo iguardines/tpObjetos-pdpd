@@ -7,7 +7,7 @@ class Familia{
 		&& unaPropiedad.soportaFamilia(self.cantMiembrosFamilia())
 	}	
 	
-	method accesoHabilitadoAPropiedad(unaPropiedad){
+	method cumpleCantidadHorasAcceso(unaPropiedad){
 		return unaPropiedad.puedeAceder(self)
 	}
 	

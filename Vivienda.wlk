@@ -5,8 +5,10 @@ class Vivienda{
 	var horasTrabajoAcceso
 	var habitantes=[]
 
-	constructor(_horasTrabajoAcceso){
-	horasTrabajoAcceso = _horasTrabajoAcceso}
+	constructor(_horasTrabajoAcceso, _horasTrabajoRestante){
+		horasTrabajoAcceso = _horasTrabajoAcceso
+		horasTrabajoRestante = _horasTrabajoRestante
+		}
 
 	
 	method esHabitable(){

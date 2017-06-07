@@ -8,7 +8,7 @@ class Casa inherits Vivienda{
 		cantAmbientes=_cantAmbientes
 	 }
 	 
-	 method soportaFamilia(cantFamiliares){
+	override method soportaFamilia(cantFamiliares){
 	 	return self.cantAmbientes() == (cantFamiliares+1) || self.cantAmbientes() == cantFamiliares
 	 }
 	

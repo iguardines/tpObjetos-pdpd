@@ -3,7 +3,7 @@ class Familia{
 	var representante // para asignar representante ARI 24/05
 	
 	method accesoHabilitadoAPropiedad(unaPropiedad){
-		return unaPropiedad.esHabitable() && self.cumpleCantHorasAcceso(unaPropiedad) 
+		return unaPropiedad.esHabitable() && self.cumpleCantidadHorasAcceso(unaPropiedad) 
 		&& unaPropiedad.soportaFamilia(self.cantMiembrosFamilia())
 	}	
 	

@@ -49,6 +49,9 @@ class Vivienda{
 		return unaFamilia.cantHorasTrabajadas()>= self.horasTrabajoAcceso() 
 	
 	}
+	method soportaFamilia(cantMiembros){
+		return false // Le agregué return false porque me pedía que retorne algo, igualmente se redefinen en las subclases y nunca va a usarse este método abtracto
+	}	
 	
 	method habitar(familia){
 		habitantes = familia.miembrosFamilia()

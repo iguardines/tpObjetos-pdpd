@@ -1,4 +1,3 @@
-import PlanVivienda.*
 import Casa.*
 import Departamento.*
 import Familia.*

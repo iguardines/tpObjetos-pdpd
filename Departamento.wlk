@@ -4,9 +4,9 @@ import Familia.*
 class Departamento inherits Vivienda {
 	var superficieTotal
 
-	constructor(_horasTrabajoRestante, _horasTrabajoAcceso, _superficieTotal) {
-		horasTrabajoAcceso = _horasTrabajoAcceso horasTrabajoRestante =
-		_horasTrabajoRestante superficieTotal = _superficieTotal
+	constructor(_horasTrabajoRestante, _horasTrabajoAcceso, _superficieTotal) =
+		super(_horasTrabajoRestante,_horasTrabajoAcceso){
+		superficieTotal = _superficieTotal	
 	}
 
 	method soportaFamilia(cantFamiliares) {

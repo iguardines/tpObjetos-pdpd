@@ -2,7 +2,6 @@ import UserException.*
 
 class Vivienda{
 	var horasTrabajoRestante
-	var estadoVivienda
 	var horasTrabajoAcceso
 	var habitantes=[]
 

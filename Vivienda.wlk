@@ -14,7 +14,7 @@ class Vivienda{
 		}
 		else 
 		{
-		throw new User Exception("La casa no esta habitable")
+		throw new UserException("La casa no esta habitable")
 		}
 	}
 	

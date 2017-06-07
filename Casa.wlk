@@ -3,9 +3,8 @@ import Vivienda.*
 class Casa inherits Vivienda{
 	var cantAmbientes
 	
-	constructor (_horasTrabajoRestante,_horasTrabajoAcceso,_cantAmbientes){
-		horasTrabajoRestante=_horasTrabajoRestante
-		horasTrabajoAcceso=_horasTrabajoAcceso
+	constructor(_horasTrabajoRestante,_horasTrabajoAcceso,_cantAmbientes) = 
+		super(_horasTrabajoRestante,_horasTrabajoAcceso){
 		cantAmbientes=_cantAmbientes
 	 }
 	 

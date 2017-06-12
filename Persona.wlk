@@ -12,7 +12,7 @@ class Persona {
 		habilidad = _habilidad
 	}
 
-	method trabajar(cantHoras, unaPropiedad) {
+	method trabaja(cantHoras, unaPropiedad) {
 		if (edad < 18 || edad > 65){
 			throw new UserException("La edad de esta persona no le permite trabajar")
 		}

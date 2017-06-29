@@ -1,0 +1,75 @@
+import Habilidad.*
+import Casa.*
+import Departamento.*
+import Familia.*
+import Persona.*
+import estado.*
+import Vivienda.*
+import fixture.*
+
+test "verificar que una persona menor de edad no trabaja, devuelve 0 como horas de trabajo" {
+	var menor11 = fixture.personaMenorDeEdad11()
+    var casaATerminar = fixture.casa3ambientesNoLista()
+
+	assert.throwsExceptionWithMessage("La edad de esta persona no le permite trabajar", 
+	{ 
+		=>menor11.trabaja(3, casaATerminar) 
+	})
+
+
+}
+
+test "verificar que una persona jubilada no trabaja, devuelve 0 como horas de trabajo" {
+	var jubilado = fixture.jubilado()
+    var casaATerminar = fixture.casa3ambientesNoLista()
+
+	assert.throwsExceptionWithMessage("La edad de esta persona no le permite trabajar", 
+	{ 
+		=>jubilado.trabaja(3, casaATerminar) 
+	})
+	
+	
+	
+}
+
+test "verificar que para una persona que sabe electricidad, su hora vale un 20% mas" {
+	var electricista = fixture.electricista()
+    var casaATerminar = fixture.casa3ambientesNoLista()
+    var horasTrabajadas = electricista.horasTrabajadasTotal()
+	electricista.trabaja(10,casaATerminar)
+
+	assert.that(electricista.horasTrabajadasTotal() == horasTrabajadas + 12 )
+}
+
+test "verificar que para una persona que sabe decoracion, su hora vale el doble" {
+	var decorador = fixture.decorador()
+    var casaATerminar = fixture.casa3ambientesNoLista()
+    var horasTrabajadas = decorador.horasTrabajadasTotal()
+	decorador.trabaja(10,casaATerminar)
+
+	assert.that(decorador.horasTrabajadasTotal() == horasTrabajadas + 20 )
+}
+
+test "verificar que para una persona desordenado, su hora vale al 0.75%" {
+	var desordenado = fixture.desordenado()
+    var casaATerminar = fixture.casa3ambientesNoLista()
+    var horasTrabajadas = desordenado.horasTrabajadasTotal()
+	desordenado.trabaja(10,casaATerminar)
+
+	assert.that(desordenado.horasTrabajadasTotal() == horasTrabajadas + 7.5 )
+}
+
+test "verificar que para una persona que no se conoce habilidad, su hora es la unidad" {
+	var empleado = fixture.empleado()
+    var casaATerminar = fixture.casa3ambientesNoLista()
+    var horasTrabajadas = empleado.horasTrabajadasTotal()
+	empleado.trabaja(10,casaATerminar)
+
+	assert.that(empleado.horasTrabajadasTotal() == horasTrabajadas + 10)
+}
+
+
+
+
+
+

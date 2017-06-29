@@ -13,7 +13,7 @@ test "verificar que una persona menor de edad no trabaja, devuelve 0 como horas 
 
 	assert.throwsExceptionWithMessage("La edad de esta persona no le permite trabajar", 
 	{ 
-		=>menor11.trabaja(3, casaATerminar) 
+		=>menor11.trabaja(3, casaATerminar)  
 	})
 
 

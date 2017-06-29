@@ -42,40 +42,36 @@ object estado {
 	method propiedadesAEntregar() {
 		return propiedades.filter({ v => v.esHabitable() })
 	}
-method asignarPropiedad(unaFamilia, unaPropiedad) {		
-		if ( self.propiedadNoPuedeAdjudicarse(unaPropiedad) || 
-		     self.familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) ||
-		     !unaPropiedad.esHabitable())
-   		{
-		throw new UserException("No se puede asignar esa propiedad a la familia")
-		} unaFamilia.habitar(unaPropiedad)
+
+
+//Este metodo es el encargado de asignar propiedades a familias, solo controla que la propiedad y las familias esten registradas al plan.
+method asignarPropiedad(unaFamilia, unaPropiedad) {
+	if (self.propiedadRegistradaAlPlan(unaPropiedad) && self.familiaRegistradaAlPlan(unaFamilia)){
+		unaFamilia.habitar(unaPropiedad)
 		self.finalizarPlan(unaFamilia, unaPropiedad)
 	}
+}
 
-
-	method propiedadNoPuedeAdjudicarse(unaPropiedad){		//ARI 05/06/2017
-		return ! self.propiedadRegistradaAlPlan(unaPropiedad)
-	}
-
-	method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad){ 
-		return (! self.familiaRegistradaAlPlan(unaFamilia) || 
-		   	! unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad))
-	}
+method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) {
+	return ( ! self.familiaRegistradaAlPlan(unaFamilia) || !
+	unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad) )
+}
 	
-//	method buscarAsignarCasaAFamiliasiEsPosible(unaFamilia) {
-//		if (self.propiedadesAEntregar().any({ p => unaFamilia.accesoHabilitadoAPropiedad(p) })) {
-//
-//			var propiedad = self.propiedadesAEntregar().find({ p =>
-//			unaFamilia.accesoHabilitadoAPropiedad(p) })
-//			self.asignarPropiedad(unaFamilia, propiedad)
-//			self.finalizarPlan(unaFamilia, propiedad)
-//		}
-//	}
-//
-//	method asignarViviendasTerminadasAFamilias() {
-//		self.familiasParticipantes().any({ familia =>
-//		self.buscarAsignarCasaAFamiliasiEsPosible(familia) })
-//	}
+	method buscarAsignarCasaAFamiliasiEsPosible(unaFamilia) {
+		if (self.propiedadesAEntregar().any({ p => unaFamilia.accesoHabilitadoAPropiedad(p) })) {
+
+			var propiedad = self.propiedadesAEntregar().find({ p =>
+			unaFamilia.accesoHabilitadoAPropiedad(p) })
+			self.asignarPropiedad(unaFamilia, propiedad)
+			self.finalizarPlan(unaFamilia, propiedad)
+		}
+	}
+
+	method asignarViviendasTerminadasAFamilias() {
+		self.familiasParticipantes().foreach({
+			 familia =>  self.buscarAsignarCasaAFamiliasiEsPosible(familia) 
+			 })
+	}
 
 	method cantPropiedades() {
 		return propiedades.size()

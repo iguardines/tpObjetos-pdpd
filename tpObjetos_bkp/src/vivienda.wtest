@@ -4,6 +4,7 @@ import Familia.*
 import Persona.*
 import estado.*
 import Vivienda.*
+import fixture.*
 // 1)
 
 //Test sobre Departamentos
@@ -59,7 +60,17 @@ test "verificar que una casa con horas de trabajo restantes no es habitable" {
 		assert.notThat(casaHorasRestantes.esHabitable())
 }
 
-test "verificar que una casa con horas de trabajo restantes no esta habitada" {
+test "verificar que una casa con horas de trabajo restantes esta vacia" {
 	var casaHorasRestantes = new Casa(1, 40, 2)
-		assert.that(casaHorasRestantes.esInhabitada())
+		assert.that(casaHorasRestantes.estaVacia())
+}
+
+test "verificar que una casa incompleta no se le puede asignar familia" {
+	var casaHorasRestantes = new Casa(1, 40, 2)
+	var familia = fixture.familia3IntegrantesunoMenor()
+	assert.throwsExceptionWithMessage("la vivienda no puede aun ser habitada.", 
+	{ 
+		=>assert.that(casaHorasRestantes.habitar(familia))  
+	})
+		
 }

@@ -12,12 +12,7 @@ class Vivienda{
 
 	
 	method esHabitable() {
-		if (horasTrabajoRestante == 0 && self.estaVacia()) {
-			return true
-		}
-		else {
-			throw new UserException("La casa no esta habitable")
-		}
+		return (horasTrabajoRestante == 0 && self.estaVacia())
 	}
 	
 	method estaVacia(){ 		
@@ -40,8 +35,8 @@ class Vivienda{
 	}
 	
 	method puedeAcceder(unaFamilia){
-		return (self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
-		&& self.soportaFamilia(unaFamilia.cantMiembrosFamilia()))
+		return self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
+		&& self.soportaFamilia(unaFamilia.cantMiembrosFamilia())
 	}
 			
 	method cumpleHorasNecesariasAcceso(unaFamilia){
@@ -53,6 +48,9 @@ class Vivienda{
 	}	
 	
 	method habitar(familia){
+		if(!self.puedeAcceder(familia)){
+			throw new UserException("la vivienda no puede aun ser habitada.")
+		}
 		habitantes = familia.miembrosFamilia()
 	}
 }

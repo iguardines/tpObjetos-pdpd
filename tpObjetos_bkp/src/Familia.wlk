@@ -8,7 +8,7 @@ class Familia{
 	}	
 	
 	method cumpleCantidadHorasAcceso(unaPropiedad){
-		return unaPropiedad.puedeAceder(self)
+		return unaPropiedad.cumpleHorasNecesariasAcceso(self)
 	}
 	
 	method agregarAFamilia(unaPersona){

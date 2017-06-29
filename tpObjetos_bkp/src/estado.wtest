@@ -14,29 +14,33 @@ test "verificar que una familia accede a una propiedad" {
 	var gonzales = new Familia()
 	estado.incautarPropiedad(casa1)
 	estado.incautarPropiedad(dep2Ambientes)
-	var pablo = new Persona("pablo", 30, 60, electricidad) 
-	var juana = new Persona("juana", 28, 40, electricidad)
+	var pablo = new Persona("pablo", 30, 70, electricidad) 
+	var juana = new Persona("juana", 28, 50, electricidad)
 	estado.agregarFamiliaParticipante(gonzales)
 	gonzales.agregarAFamilia(pablo)
 	gonzales.agregarAFamilia(juana)
-	pablo.trabaja(5, casa1)
-	juana.trabaja(10, casa1)
+	pablo.trabaja(5, dep2Ambientes)
+	juana.trabaja(100 , dep2Ambientes)
 
-	assert.that(gonzales.accesoHabilitadoAPropiedad(dep2Ambientes))
+	assert.that(gonzales.cumpleCantidadHorasAcceso(dep2Ambientes))
 	estado.asignarPropiedad(gonzales, dep2Ambientes)
 
-	assert.that(!dep2Ambientes.esInhabitada())
+	assert.that(!dep2Ambientes.estaVacia())
 	assert.that(!estado.familiasParticipantes().contains(gonzales))
 	assert.that(!estado.propiedadesIncautadas().contains(dep2Ambientes))
 }
 
 test "asignar viviendas terminadas a todas las posibles familias" {
 
-	fixture.familia3IntegrantesunoMenor()
-	fixture.dep3AmbientesAEstrenar()
+console.println(estado.familiasParticipantes().size())
+	console.println(estado.propiedadesIncautadas().size())
+	fixture.familia2Personasy100horasDeTrabajo()
+	fixture.dep2AmbientesAEstrenar()
+	console.println(estado.familiasParticipantes().size())
+	console.println(estado.propiedadesIncautadas().size())
 
-	//estado.asignarViviendasTerminadasAFamilias()
-	assert.that(!estado.familiasParticipantes().isEmpty())
+	estado.asignarViviendasTerminadasAFamilias()
+	assert.that(estado.familiasParticipantes().isEmpty())
 
 }
 

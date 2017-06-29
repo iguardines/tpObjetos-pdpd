@@ -40,6 +40,7 @@ object estado {
 	}
 	
 	method propiedadesAEntregar() {
+		console.println("hay alguna habitable?")
 		return propiedades.filter({ v => v.esHabitable() })
 	}
 
@@ -47,7 +48,7 @@ object estado {
 //Este metodo es el encargado de asignar propiedades a familias, solo controla que la propiedad y las familias esten registradas al plan.
 method asignarPropiedad(unaFamilia, unaPropiedad) {
 	if (self.propiedadRegistradaAlPlan(unaPropiedad) && self.familiaRegistradaAlPlan(unaFamilia)){
-		unaFamilia.habitar(unaPropiedad)
+		unaPropiedad.habitar(unaFamilia)
 		self.finalizarPlan(unaFamilia, unaPropiedad)
 	}
 }
@@ -58,6 +59,7 @@ method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) {
 }
 	
 	method buscarAsignarCasaAFamiliasiEsPosible(unaFamilia) {
+			console.println("buscarAsignar")
 		if (self.propiedadesAEntregar().any({ p => unaFamilia.accesoHabilitadoAPropiedad(p) })) {
 
 			var propiedad = self.propiedadesAEntregar().find({ p =>
@@ -68,10 +70,16 @@ method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) {
 	}
 
 	method asignarViviendasTerminadasAFamilias() {
-		self.familiasParticipantes().foreach({
-			 familia =>  self.buscarAsignarCasaAFamiliasiEsPosible(familia) 
-			 })
-	}
+		self.familiasParticipantes().forEach({
+		try
+			{
+				familia => self.buscarAsignarCasaAFamiliasiEsPosible(familia)
+			}
+			catch e : UserException
+			{
+				console.println("no se pudo asignar la vivienda a a familia.")
+			} })
+		}
 
 	method cantPropiedades() {
 		return propiedades.size()

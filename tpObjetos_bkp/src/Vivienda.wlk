@@ -22,8 +22,12 @@ class Vivienda{
 		self.disminuyeHorasRestantes(cantHoras)
 	}
 	
-	method disminuyeHorasRestantes(cantHoras){
-		horasTrabajoRestante=horasTrabajoRestante - cantHoras
+	method disminuyeHorasRestantes(cantHoras) {
+		if (horasTrabajoRestante - cantHoras < 0) {
+			horasTrabajoRestante = 0
+		} else {
+			horasTrabajoRestante = horasTrabajoRestante - cantHoras
+		}
 	}
 	
 	method horasTrabajoRestante(){
@@ -35,6 +39,10 @@ class Vivienda{
 	}
 	
 	method puedeAcceder(unaFamilia){
+		console.println(self.esHabitable())
+		console.println(horasTrabajoRestante)
+		console.println(self.cumpleHorasNecesariasAcceso(unaFamilia))
+		console.println(self.soportaFamilia(unaFamilia.cantMiembrosFamilia()))
 		return self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
 		&& self.soportaFamilia(unaFamilia.cantMiembrosFamilia())
 	}

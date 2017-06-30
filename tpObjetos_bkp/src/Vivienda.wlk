@@ -39,10 +39,6 @@ class Vivienda{
 	}
 	
 	method puedeAcceder(unaFamilia){
-		console.println(self.esHabitable())
-		console.println(horasTrabajoRestante)
-		console.println(self.cumpleHorasNecesariasAcceso(unaFamilia))
-		console.println(self.soportaFamilia(unaFamilia.cantMiembrosFamilia()))
 		return self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
 		&& self.soportaFamilia(unaFamilia.cantMiembrosFamilia())
 	}

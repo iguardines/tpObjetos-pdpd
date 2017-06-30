@@ -69,6 +69,10 @@ test "verificar que para una persona que no se conoce habilidad, su hora es la u
 }
 
 
+test "verificar que para una persona que las horas cargadas en su creacione" {
+	var empleado = new Persona("tomas", 19, 10, sinHabilidad)
+	assert.that(empleado.horasTrabajadasTotal() ==  10)
+}
 
 
 

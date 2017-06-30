@@ -40,7 +40,6 @@ object estado {
 	}
 	
 	method propiedadesAEntregar() {
-		console.println("hay alguna habitable?")
 		return propiedades.filter({ v => v.esHabitable() })
 	}
 
@@ -59,9 +58,8 @@ method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) {
 }
 	
 	method buscarAsignarCasaAFamiliasiEsPosible(unaFamilia) {
-			console.println("buscarAsignar")
+		console.println("por aca pasa")
 		if (self.propiedadesAEntregar().any({ p => unaFamilia.accesoHabilitadoAPropiedad(p) })) {
-
 			var propiedad = self.propiedadesAEntregar().find({ p =>
 			unaFamilia.accesoHabilitadoAPropiedad(p) })
 			self.asignarPropiedad(unaFamilia, propiedad)
@@ -71,14 +69,8 @@ method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) {
 
 	method asignarViviendasTerminadasAFamilias() {
 		self.familiasParticipantes().forEach({
-		try
-			{
 				familia => self.buscarAsignarCasaAFamiliasiEsPosible(familia)
-			}
-			catch e : UserException
-			{
-				console.println("no se pudo asignar la vivienda a a familia.")
-			} })
+			} )
 		}
 
 	method cantPropiedades() {

@@ -14,11 +14,11 @@ object fixture{
 	}
 	
 	method dep2AmbientesAEstrenar(){
-		 estado.incautarPropiedad(new Departamento(0, 100, 30))
+		 estado.incautarPropiedad(new Departamento(100, 0, 30))
 	}
 	
 	method dep3AmbientesAEstrenar(){
-		 estado.incautarPropiedad(new Departamento(0, 100, 45))
+		 estado.incautarPropiedad(new Departamento( 100,0, 45))
 	}
 	
 	method familia2Personasy100horasDeTrabajo(){
@@ -35,6 +35,16 @@ object fixture{
 		juana.trabaja(10, casa3ambientes)
 		return gonzales
 	}
+	
+	method familia2Personas100horas() {
+		var pablo = new Persona("pablo", 30, 60, electricidad) var juana =
+		new Persona("juana", 28, 40, electricidad) var gonzales = new Familia()
+		gonzales.agregarAFamilia(pablo)
+		gonzales.agregarAFamilia(juana)
+		gonzales.asignarRepresentante(juana)
+		return gonzales
+	}
+	
 	
 	method familia3IntegrantesunoMenor(){
 		var pablo = new Persona("pablo", 30, 60, electricidad) 

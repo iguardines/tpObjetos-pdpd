@@ -10,6 +10,7 @@ class Persona {
 		nombre = _nombre 
 		edad = _edad 
 		habilidad = _habilidad
+		horasTrabajadasTotal =  _horasTrabajadasTotal
 	}
 
 	method trabaja(cantHoras, unaPropiedad) {

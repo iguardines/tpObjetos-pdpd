@@ -32,14 +32,11 @@ test "verificar que una familia accede a una propiedad" {
 
 test "asignar viviendas terminadas a todas las posibles familias" {
 
-	console.println("001")
 	estado.agregarFamiliaParticipante(fixture.familia2Personas100horas())
-	console.println("1")
 	fixture.dep2AmbientesAEstrenar()
 	fixture.dep3AmbientesAEstrenar()
 
 	estado.asignarViviendasTerminadasAFamilias()
-	console.println("2")	
 	assert.that(estado.familiasParticipantes().isEmpty())
 
 }

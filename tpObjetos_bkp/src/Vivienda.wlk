@@ -52,6 +52,7 @@ class Vivienda{
 	}	
 	
 	method habitar(familia){
+		console.println("habitar")
 		if(!self.puedeAcceder(familia)){
 			throw new UserException("la vivienda no puede aun ser habitada.")
 		}

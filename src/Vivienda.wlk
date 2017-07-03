@@ -11,14 +11,8 @@ class Vivienda{
 		}
 
 	
-	method esHabitable(){
-		if (horasTrabajoRestante == 0 && self.estaVacia()){
-		return true
-		}
-		else 
-		{
-		throw new UserException("La casa no esta habitable")
-		}
+	method esHabitable() {
+		return (horasTrabajoRestante == 0 && self.estaVacia())
 	}
 	
 	method estaVacia(){ 		
@@ -28,8 +22,12 @@ class Vivienda{
 		self.disminuyeHorasRestantes(cantHoras)
 	}
 	
-	method disminuyeHorasRestantes(cantHoras){
-		horasTrabajoRestante=horasTrabajoRestante - cantHoras
+	method disminuyeHorasRestantes(cantHoras) {
+		if (horasTrabajoRestante - cantHoras < 0) {
+			horasTrabajoRestante = 0
+		} else {
+			horasTrabajoRestante = horasTrabajoRestante - cantHoras
+		}
 	}
 	
 	method horasTrabajoRestante(){
@@ -41,7 +39,7 @@ class Vivienda{
 	}
 	
 	method puedeAcceder(unaFamilia){
-		return (self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
+		return self.esHabitable() && self.cumpleHorasNecesariasAcceso(unaFamilia) 
 		&& self.soportaFamilia(unaFamilia.cantMiembrosFamilia())
 	}
 			
@@ -54,6 +52,10 @@ class Vivienda{
 	}	
 	
 	method habitar(familia){
+		console.println("habitar")
+		if(!self.puedeAcceder(familia)){
+			throw new UserException("la vivienda no puede aun ser habitada.")
+		}
 		habitantes = familia.miembrosFamilia()
 	}
 }

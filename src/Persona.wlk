@@ -6,10 +6,11 @@ class Persona {
 	var horasTrabajadasTotal = 0		
 	var habilidad
 
-	constructor(_nombre, _edad, _horasTrabajadasTotal, _habilidad)
+	constructor(_nombre, _edad, _horasTrabajadasTotal, _habilidad){
 		nombre = _nombre 
 		edad = _edad 
 		habilidad = _habilidad
+		horasTrabajadasTotal =  _horasTrabajadasTotal
 	}
 
 	method trabaja(cantHoras, unaPropiedad) {

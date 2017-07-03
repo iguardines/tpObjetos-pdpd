@@ -2,7 +2,13 @@
 class Familia {
 	var integrantes = [ ]
 	var representante // para asignar representante ARI 24/05
-	method accesoHabilitadoAPropiedad(unaPropiedad) {
+
+	constructor (_representante){
+		representante = _representante
+		integrantes.add(_representante)
+	}
+
+	method puedeAccederAPropiedad(unaPropiedad) {
 		return unaPropiedad.esHabitable() &&
 		self.cumpleCantidadHorasAcceso(unaPropiedad)
 		&& unaPropiedad.soportaFamilia(self.cantMiembrosFamilia())
@@ -30,5 +36,9 @@ class Familia {
 	method asignarRepresentante(unaPersona) {
 		if (integrantes.contains(unaPersona)) {
 			representante = unaPersona }
+	}
+	
+	method representante(){
+		return representante
 	}
 }

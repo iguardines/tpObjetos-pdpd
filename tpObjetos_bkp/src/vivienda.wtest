@@ -4,7 +4,7 @@ import Familia.*
 import Persona.*
 import estado.*
 import Vivienda.*
-import fixture.*
+import Habilidad.*
 // 1)
 
 //Test sobre Departamentos
@@ -67,10 +67,20 @@ test "verificar que una casa con horas de trabajo restantes esta vacia" {
 
 test "verificar que una casa incompleta no se le puede asignar familia" {
 	var casaHorasRestantes = new Casa(1, 40, 2)
-	var familia = fixture.familia3IntegrantesunoMenor()
+	
+		var pablo = new Persona("pablo", 30, 60, electricidad) 
+		var juana = new Persona("juana", 28, 40, electricidad)
+		var tomas = new Persona("tomas", 8, 0, sinHabilidad)
+
+	
+		var gonzales = new Familia(pablo)
+		estado.agregarFamiliaParticipante(gonzales)
+		gonzales.agregarAFamilia(juana)
+		gonzales.agregarAFamilia(tomas)
+
 	assert.throwsExceptionWithMessage("la vivienda no puede aun ser habitada.", 
 	{ 
-		=>assert.that(casaHorasRestantes.habitar(familia))  
+		=>assert.that(casaHorasRestantes.habitar(gonzales))  
 	})
 		
 }

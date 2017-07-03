@@ -21,50 +21,6 @@ object fixture{
 		 estado.incautarPropiedad(new Departamento( 100,0, 45))
 	}
 	
-	method familia2Personasy100horasDeTrabajo(){
-		var casa3ambientes = self.casa3ambientesNoLista()
-		var pablo = new Persona("pablo", 30, 60, electricidad) 
-		var juana = new Persona("juana", 28, 40, electricidad)
-	
-		var gonzales = new Familia()
-		estado.incautarPropiedad(casa3ambientes)
-		estado.agregarFamiliaParticipante(gonzales)
-		gonzales.agregarAFamilia(pablo)
-		gonzales.agregarAFamilia(juana)
-		pablo.trabaja(5, casa3ambientes)
-		juana.trabaja(10, casa3ambientes)
-		return gonzales
-	}
-	
-	method familia2Personas100horas() {
-		var pablo = new Persona("pablo", 30, 60, electricidad) var juana =
-		new Persona("juana", 28, 40, electricidad) var gonzales = new Familia()
-		gonzales.agregarAFamilia(pablo)
-		gonzales.agregarAFamilia(juana)
-		gonzales.asignarRepresentante(juana)
-		return gonzales
-	}
-	
-	
-	method familia3IntegrantesunoMenor(){
-		var pablo = new Persona("pablo", 30, 60, electricidad) 
-		var juana = new Persona("juana", 28, 40, electricidad)
-		var tomas = new Persona("tomas", 8, 0, sinHabilidad)
-
-	
-		var gonzales = new Familia()
-		estado.agregarFamiliaParticipante(gonzales)
-		gonzales.agregarAFamilia(pablo)
-		gonzales.agregarAFamilia(juana)
-		gonzales.agregarAFamilia(tomas)
-		
-		return gonzales
-	}
-	
-	method personaMenorDeEdad11(){
-		return new Persona("pedro", 11, null, sinHabilidad) 
-	}
-	
 	method jubilado(){
 		return new Persona("joaquin", 67, 60, sinHabilidad) 
 	}

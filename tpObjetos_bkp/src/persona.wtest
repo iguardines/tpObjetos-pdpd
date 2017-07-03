@@ -8,7 +8,7 @@ import Vivienda.*
 import fixture.*
 
 test "verificar que una persona menor de edad no trabaja, devuelve 0 como horas de trabajo" {
-	var menor11 = fixture.personaMenorDeEdad11()
+	var menor11 =  new Persona("pedro", 11, null, sinHabilidad) 
     var casaATerminar = fixture.casa3ambientesNoLista()
 
 	assert.throwsExceptionWithMessage("La edad de esta persona no le permite trabajar", 

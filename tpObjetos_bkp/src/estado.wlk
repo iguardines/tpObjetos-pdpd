@@ -9,25 +9,25 @@ object estado {
 		propiedades.add(unaPropiedad)
 	}
 
-	method agregarFamiliaParticipante(unParticipante) {
-		participantes.add(unParticipante)
+	method agregarFamiliaParticipante(familia) {
+		participantes.add(familia)
 	}
 
 	method sacarFamiliaParticipante(unaPropiedad) {
-		if (propiedades != null) {
-			propiedades.remove(unaPropiedad)
+		if (participantes != null) {
+			participantes.remove(unaPropiedad)
 		}
 	}
 
 	method sacarPropiedadParticipante(unaFamilia) {
-		if (participantes != null) {
-			participantes.remove(unaFamilia)
+		if (propiedades != null) {
+			propiedades.remove(unaFamilia)
 		}
 	}
 
 	method familiasHabilitadasPara(unaPropiedad) {
 		return participantes.filter({ participante =>
-		participante.accesoHabilitadoAPropiedad(unaPropiedad) })
+		participante.puedeAccederAPropiedad(unaPropiedad) })
 	}
 
 	method finalizarPlan(unaFamilia, unaPropiedad) {
@@ -55,35 +55,51 @@ object estado {
 		return propiedades.filter({ v => v.esHabitable() })
 	}
 
-	//Este metodo es el encargado de asignar propiedades a familias, solo controla que la propiedad y las familias esten registradas al plan.
-	method asignarPropiedad(unaFamilia, unaPropiedad) {
-		if (self.propiedadRegistradaAlPlan(unaPropiedad) &&
-		self.familiaRegistradaAlPlan(unaFamilia)) {
-			unaPropiedad.habitar(unaFamilia)
-			self.finalizarPlan(unaFamilia, unaPropiedad)
-			console.println("Plan finalizado")
-		}
+	
+  	method asignarPropiedad(unaFamilia, unaPropiedad) {
+		if (self.estanRegistradas (unaFamilia, unaPropiedad)){
+		self.familiaHabitaPropiedad(unaFamilia, unaPropiedad)
+		self.finalizarPlan(unaFamilia, unaPropiedad)
+	  	console.println("Plan finalizado")}
 	}
+
+	method estanRegistradas (unaFamilia, unaPropiedad){
+		return (self.familiaRegistradaAlPlan(unaFamilia) && self.familiaRegistradaAlPlan(unaFamilia))
+	}
+	
+	method familiaHabitaPropiedad(unaFamilia, unaPropiedad){
+		unaPropiedad.habitar(unaFamilia)
+	}	
+		
 
 	method familiaNoCumpleRequisitosParaAdquirirla(unaFamilia, unaPropiedad) {
 		return ( ! self.familiaRegistradaAlPlan(unaFamilia) || !
-		unaFamilia.accesoHabilitadoAPropiedad(unaPropiedad) )
+		unaFamilia.puedeAccederAPropiedad(unaPropiedad) )
 	}
 
-	method buscarAsignarCasaAFamiliasiEsPosible(unaFamilia) {
-		if (self.propiedadesAEntregar().any({ p =>
-		unaFamilia.accesoHabilitadoAPropiedad(p) })) {
-			var propiedad = self.propiedadesAEntregar().find({ p =>
-			unaFamilia.accesoHabilitadoAPropiedad(p) })
-			self.asignarPropiedad(unaFamilia, propiedad)
+	method buscarPropiedad(unaFamilia) {
+		return self.propiedadesAEntregar().find({ p =>
+		unaFamilia.puedeAccederAPropiedad(p) })
+	}
+	
+	method hayPropiedadDisponible(unaFamilia) {
+		return self.propiedadesAEntregar().any({ p =>
+		unaFamilia.puedeAccederAPropiedad(p) })
+	}
+
+	method asignarViviendas() {
+		self.propiedadesAEntregar().forEach({ p => self.buscarAsignar(p)
+
+		})
+	}
+	
+	method buscarAsignar(p) {
+		var familias = self.familiasHabilitadasPara(p)
+		if (familias != null) {
+			self.asignarPropiedad(familias.head(), p)
 		}
 	}
-
-	method asignarViviendasTerminadasAFamilias() {
-		self.familiasParticipantes().forEach({ familia =>
-		self.buscarAsignarCasaAFamiliasiEsPosible(familia) })
-	}
-
+	
 	method cantPropiedades() {
 		return propiedades.size()
 	}
